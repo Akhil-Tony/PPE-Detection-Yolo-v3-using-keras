@@ -12,10 +12,6 @@ In the second stage all the layers are unfreezed and trained with learning rate 
 A video containing workers in construction environment is used for testing.The Model is loaded and made predictions using ![Detection.py](/3_Inference/Detector.py). 
 ![](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/master/gif/20220906_133255.gif)
 ![](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/master/gif/20220906_133431.gif)
-
-
-
-
 ### Dataset Used
 ![images](https://drive.google.com/drive/folders/1a6HCLloZ0oY1X8Q7rWQkGkITDzZcCDME?usp=sharing)
 <br>
@@ -24,3 +20,7 @@ A video containing workers in construction environment is used for testing.The M
 The Downloaded Dataset labels was in class_name x_center,y_center,width,height and N lines for a image.
 Using ![convert.py](/convert.py) labels were converted to and stored in ![data_train.txt](/data_train.txt) with image_file_path [box1]....[boxN]
 each box represent x_min,y_min,x_max,y_max,class_index
+
+### Model Weights
+![Trained Weights](https://drive.google.com/file/d/1UypC7fhBKwbb9OtTyFFnhZEIkKjbx4mv/view?usp=sharing)
+Download and place inside the Data/Model_Weights Folder.
