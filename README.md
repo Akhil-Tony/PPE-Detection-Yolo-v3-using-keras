@@ -37,8 +37,11 @@ Download and place inside the Data/Model_Weights Folder for running inference.
 ### Reference
 https://github.com/qqwweee/keras-yolo3
 
-### Failed Attempt
-
+### My Failed Attempt
+[first approach](/Yolo_Experiment.ipynb)
 I First tried to implement yolo v1 from scratch with my understanding. Since i wanted to use pretrained weights i reused lower layers of VGG19 Model so that i can loaded pretrained image net weights.
-then i build a detection head layer for my model by the reshaping the outputs from dense layers.The architecture outputs 7 * 7 * (B*5 + n_classes)
-[approach](/Yolo_Experiment.ipynb)
+then i build a detection head layer for my model by the reshaping the outputs from dense layers.The architecture outputs 7 * 7 * (B*5 + n_classes).
+
+then i build a data pipeline which preprocess each data labels into 7*7*14 label tensor.
+Training never converged !!!!!
+
