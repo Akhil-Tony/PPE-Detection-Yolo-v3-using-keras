@@ -14,7 +14,7 @@ import numpy as np
 import tensorflow.keras.backend as K
 from tensorflow.keras.layers import Input, Lambda
 from tensorflow.keras.models import Model
-from keras_yolo3.yolo3.model import preprocess_true_boxes,yolo_body,tiny_yolo_body,yolo_loss
+from keras_yolo3.yolo3.model import preprocess_true_boxes,yolo_body,yolo_loss
 from keras_yolo3.yolo3.utils import get_random_data
 from PIL import Image
 
