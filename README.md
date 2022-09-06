@@ -15,7 +15,8 @@ In the second stage all the layers are unfreezed and trained with learning rate 
 ![TrainYolo.py](/2_Training/Train_YOLO.py)
 Training logs are here ![logs](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/master/Training.ipynb)
 ### Testing
-A video containing workers in construction environment is used for testing.The Model is loaded and made predictions using ![Detection.py](/3_Inference/Detector.py).
+A video containing workers in construction environment is used for testing.<br>
+The Model is loaded and made predictions using ![Detection.py](/3_Inference/Detector.py).
 <br>
 ![](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/master/gif/20220906_133255.gif)
 ![](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/master/gif/20220906_133431.gif)
