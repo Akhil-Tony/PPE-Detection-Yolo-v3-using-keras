@@ -82,10 +82,7 @@ if __name__ == "__main__":
 
     # Unfreezing and continue training, to fine-tune.
 
-    full_callbacks = [logging, checkpoint, reduce_lr, early_stopping]
-
-    if _has_wandb:
-        full_callbacks.append(wandb_callback)
+    full_callbacks = [checkpoint, reduce_lr, early_stopping]
 
     for i in range(len(model.layers)):
         model.layers[i].trainable = True
