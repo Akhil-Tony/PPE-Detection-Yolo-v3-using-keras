@@ -12,25 +12,25 @@ The Training is done in two stages
 2700 samples from the dataset are used for training and 300 for validation. <br>
 First the backbone layers are freezed and the detection heads are trained with learning rate 1e-3 for 10 epochs,
 In the second stage for fine tuning the model all the layers are unfreezed and trained with learning rate reduced to 1e-4 for another 10 epochs along with early stopping callback.
-![TrainYolo.py](/2_Training/Train_YOLO.py)
-Training logs are here ![logs](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/master/Training.ipynb)
+[TrainYolo.py](/2_Training/Train_YOLO.py)
+Training logs are here [logs](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/master/Training.ipynb)
 ### Testing
 A video containing workers in construction environment is used for testing.<br>
-The Model is loaded and made predictions using ![Detection.py](/3_Inference/Detector.py).
+The Model is loaded and made predictions using [Detection.py](/3_Inference/Detector.py).
 <br>
 ![](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/master/gif/20220906_133255.gif)
 ![](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/master/gif/20220906_133431.gif)
 ### Dataset Used
-![images](https://drive.google.com/drive/folders/1a6HCLloZ0oY1X8Q7rWQkGkITDzZcCDME?usp=sharing)
+[images](https://drive.google.com/drive/folders/1a6HCLloZ0oY1X8Q7rWQkGkITDzZcCDME?usp=sharing)
 <br>
-![labels](https://drive.google.com/drive/folders/1ews9qncvjQ6aSMuc0rS68SswHLy5X4LV?usp=sharing)
+[labels](https://drive.google.com/drive/folders/1ews9qncvjQ6aSMuc0rS68SswHLy5X4LV?usp=sharing)
 
 The Downloaded Dataset labels was in class_name x_center,y_center,width,height and N lines for a image.
-Using ![convert.py](/convert.py) labels were converted to and stored in ![data_train.txt](/data_train.txt) with image_file_path [box1]....[boxN]
+Using [convert.py](/convert.py) labels were converted to and stored in [data_train.txt](/data_train.txt) with image_file_path [box1]....[boxN]
 each box represent x_min,y_min,x_max,y_max,class_index
 
 ### Model Weights
-![Trained Weights](https://drive.google.com/file/d/1UypC7fhBKwbb9OtTyFFnhZEIkKjbx4mv/view?usp=sharing)
+[Trained Weights](https://drive.google.com/file/d/1UypC7fhBKwbb9OtTyFFnhZEIkKjbx4mv/view?usp=sharing)
 <br>
 Download and place inside the Data/Model_Weights Folder for running inference.
 
