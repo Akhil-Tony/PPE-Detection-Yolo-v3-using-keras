@@ -6,7 +6,7 @@ The Model used the darknet body as the classification backbone and pretrained im
 A Custom detection head is constructed with 3 layers outputing features with dimentions 13 * 13 * (num_anchors * (num_classes + 5)),<br>
 26 * 26 * (num_anchors * (num_classes + 5)),<br>
 52 * 52 * (num_anchors * (num_classes + 5)) respectively is stacked upon the classification backbone.
-![model.py](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/c536ab42215577578a84c1b3c29c52ed2c6b96c3/2_Training/src/keras_yolo3/yolo3/model.py#L63-L91)
+[model.py](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/c536ab42215577578a84c1b3c29c52ed2c6b96c3/2_Training/src/keras_yolo3/yolo3/model.py#L63-L91)
 ### Training
 The Training is done in two stages
 2700 samples from the dataset are used for training and 300 for validation. <br>
