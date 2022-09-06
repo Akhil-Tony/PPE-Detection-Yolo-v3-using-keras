@@ -6,14 +6,14 @@ The Model used the darknet body as the classification backbone and pretrained im
 A Custom detection head is constructed with 3 layers outputing features with dimentions 13 * 13 * (num_anchors * (num_classes + 5)),<br>
 26 * 26 * (num_anchors * (num_classes + 5)),<br>
 52 * 52 * (num_anchors * (num_classes + 5)) respectively is stacked upon the classification backbone.
-[model.py](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/c536ab42215577578a84c1b3c29c52ed2c6b96c3/2_Training/src/keras_yolo3/yolo3/model.py#L78)
+Model Building Program : [model.py](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/c536ab42215577578a84c1b3c29c52ed2c6b96c3/2_Training/src/keras_yolo3/yolo3/model.py#L78)
 ### Training
 2700 samples from the dataset are used for training and 300 for validation. <br>
 The Training is done by two stages. <br>
 First the backbone layers are freezed and only the detection heads are trained with learning rate 1e-3 for 10 epochs with batch_size 32. <br>
 In the second stage for fine tuning the model all the layers are unfreezed and trained with learning rate reduced to 1e-4 for another 10 epochs along with early stopping callback.<br>
 Here batch_size is reduced to 4 to not overload the gpu.<br>
-[TrainYolo.py](/2_Training/Train_YOLO.py)<br>
+Training Program : [TrainYolo.py](/2_Training/Train_YOLO.py)<br>
 Total Training Time : 40 mins<br>
 Training logs are here [logs](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/master/Training.ipynb)
 ### Testing
