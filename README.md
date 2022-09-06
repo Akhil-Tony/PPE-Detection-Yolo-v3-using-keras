@@ -10,6 +10,7 @@ In the second stage all the layers are unfreezed and trained with learning rate 
 ![TrainYolo.py](/2_Training/Train_YOLO.py)
 ### Testing
 A video containing workers in construction environment is used for testing.
+![Detection.py](/3_Inference/Detector.py)
 
 
 
