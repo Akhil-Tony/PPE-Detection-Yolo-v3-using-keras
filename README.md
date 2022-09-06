@@ -29,4 +29,4 @@ each box represent x_min,y_min,x_max,y_max,class_index
 ### Model Weights
 ![Trained Weights](https://drive.google.com/file/d/1UypC7fhBKwbb9OtTyFFnhZEIkKjbx4mv/view?usp=sharing)
 <br>
-Download and place inside the Data/Model_Weights Folder.
+Download and place inside the Data/Model_Weights Folder for running inference.
