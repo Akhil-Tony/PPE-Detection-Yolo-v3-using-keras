@@ -10,6 +10,8 @@ In the second stage all the layers are unfreezed and trained with learning rate 
 ![TrainYolo.py](/2_Training/Train_YOLO.py)
 ### Testing
 A video containing workers in construction environment is used for testing.
+![](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/master/gif/20220906_133255.gif)
+![](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/master/gif/20220906_133431.gif)
 ![Detection.py](/3_Inference/Detector.py)
 
 
