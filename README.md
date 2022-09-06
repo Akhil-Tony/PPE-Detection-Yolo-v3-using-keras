@@ -9,7 +9,7 @@ A Custom detection head is constructed with 3 layers outputing features with dim
 ![model.py](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/c536ab42215577578a84c1b3c29c52ed2c6b96c3/2_Training/src/keras_yolo3/yolo3/model.py#L63-L91)
 ### Training
 The Training is done in two stages
-2700 samples from the dataset are used for training and 300 for testing. <br>
+2700 samples from the dataset are used for training and 300 for validation. <br>
 First the backbone layers are freezed and the detection heads are trained with learning rate 1e-3 for 10 epochs,
 In the second stage all the layers are unfreezed and trained with learning rate reduced to 1e-4 for another 10 epochs along with early stopping callback.
 ![TrainYolo.py](/2_Training/Train_YOLO.py)
