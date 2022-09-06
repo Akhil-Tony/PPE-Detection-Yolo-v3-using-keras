@@ -8,6 +8,7 @@ The Training is done in two stages
 First the backbone layers are freezed and the detection heads are trained with learning rate 1e-3 for 51 epochs,
 In the second stage all the layers are unfreezed and trained with learning rate reduced to 1e-4 for another 51 epochs along with early stopping callback.
 ![TrainYolo.py](/2_Training/Train_YOLO.py)
+Training logs are here ![]()
 ### Testing
 A video containing workers in construction environment is used for testing.The Model is loaded and made predictions using ![Detection.py](/3_Inference/Detector.py). 
 ![](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/master/gif/20220906_133255.gif)
@@ -23,4 +24,5 @@ each box represent x_min,y_min,x_max,y_max,class_index
 
 ### Model Weights
 ![Trained Weights](https://drive.google.com/file/d/1UypC7fhBKwbb9OtTyFFnhZEIkKjbx4mv/view?usp=sharing)
+<br>
 Download and place inside the Data/Model_Weights Folder.
