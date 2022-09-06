@@ -40,36 +40,9 @@ model_classes = os.path.join(model_folder, "data_classes.txt")
 
 anchors_path = os.path.join(src_path, "keras_yolo3", "model_data", "yolo_anchors.txt")
 
-FLAGS = None
-
 if __name__ == "__main__":
-    
-    parser = argparse.ArgumentParser(argument_default=argparse.SUPPRESS)
 
-    parser.add_argument("--input_path",type=str,default=image_test_folder)
-    parser.add_argument("--output",type=str,default=detection_results_folder)
-    parser.add_argument("--no_save_img",default=False,action="store_true")
-    parser.add_argument("--file_types","--names-list",nargs="*",default=[])
-    parser.add_argument("--yolo_model",type=str,dest="model_path",default=model_weights)
-    parser.add_argument("--anchors",type=str,dest="anchors_path",default=anchors_path)
-    parser.add_argument("--classes",type=str,dest="classes_path",default=model_classes)
-    parser.add_argument("--gpu_num", type=int, default=1)
-    parser.add_argument("--confidence",type=float,dest="score",default=0.25)
-    parser.add_argument("--box_file",type=str,dest="box",default=detection_results_file)
-    parser.add_argument("--postfix",type=str,dest="postfix",default="default_obj")
-    parser.add_argument("--is_tiny",default=False,action="store_true")
-    parser.add_argument("--webcam",default=False,action="store_true")
-
-    FLAGS = parser.parse_args()
-
-    save_img = not FLAGS.no_save_img
-
-    file_types = FLAGS.file_types
-
-    if file_types:
-        input_paths = GetFileList(FLAGS.input_path, endings=file_types)
-    else:
-        input_paths = GetFileList(FLAGS.input_path)
+    save_img = True
 
     # Split images and videos
     img_endings = (".jpg", ".jpeg", ".png")
@@ -83,72 +56,40 @@ if __name__ == "__main__":
         elif item.endswith(vid_endings):
             input_video_paths.append(item)
 
-    output_path = FLAGS.output
+    output_path = detection_results_folder
     if not os.path.exists(output_path):
         os.makedirs(output_path)
-
-    if FLAGS.is_tiny and FLAGS.anchors_path == anchors_path:
-        anchors_path = os.path.join(
-            os.path.dirname(FLAGS.anchors_path), "yolo-tiny_anchors.txt"
-        )
 
     anchors = get_anchors(anchors_path)
     # define YOLO detector
     yolo = YOLO(
         **{
-            "model_path": FLAGS.model_path,
+            "model_path": model_weights ,
             "anchors_path": anchors_path,
-            "classes_path": FLAGS.classes_path,
-            "score": FLAGS.score,
-            "gpu_num": FLAGS.gpu_num,
+            "classes_path": model_classes,
+            "score": =0.25,
+            "gpu_num": 1,
             "model_image_size": (416, 416),
         }
     )
 
     # labels to draw on images
-    class_file = open(FLAGS.classes_path, "r")
+    class_file = open(model_classes, "r")
     input_labels = [line.rstrip("\n") for line in class_file.readlines()]
-    print("Found {} input labels: {} ...".format(len(input_labels), input_labels))
 
     if input_image_paths:
-        print(
-            "Found {} input images: {} ...".format(
-                len(input_image_paths),
-                [os.path.basename(f) for f in input_image_paths[:5]],
-            )
-        )
         # This is for images
         for i, img_path in enumerate(input_image_paths):
             print(img_path)
-            prediction, image = detect_object(
-                yolo,
-                img_path,
-                save_img=save_img,
-                save_img_path=FLAGS.output,
-                postfix=FLAGS.postfix,
-            )
+            prediction, image = detect_object(yolo,img_path,save_img=save_img,save_img_path=detection_results_folder,postfix='.jpg')
 
     # This is for videos
     if input_video_paths:
-        print(
-            "Found {} input videos: {} ...".format(
-                len(input_video_paths),
-                [os.path.basename(f) for f in input_video_paths[:5]],
-            )
-        )
-        start = timer()
         for i, vid_path in enumerate(input_video_paths):
             output_path = os.path.join(
                 FLAGS.output,
                 os.path.basename(vid_path).replace(".", FLAGS.postfix + "."),
             )
-            detect_video(yolo, vid_path, output_path=output_path)
-
-        end = timer()
-        print(
-            "Processed {} videos in {:.1f}sec".format(
-                len(input_video_paths), end - start
-            )
-        )
+            detect_video(yolo, vid_path, output_path=output_path)      
     # Close the current yolo session
     yolo.close_session()
