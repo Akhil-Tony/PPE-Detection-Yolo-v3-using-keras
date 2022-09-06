@@ -5,14 +5,7 @@ from tensorflow import keras
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras import backend as K
-from tensorflow.keras.layers import (
-    Conv2D,
-    Add,
-    ZeroPadding2D,
-    UpSampling2D,
-    Concatenate,
-    MaxPooling2D,
-)
+from tensorflow.keras.layers import Conv2D,Add,ZeroPadding2D,UpSampling2D,Concatenate,MaxPooling2D
 from tensorflow.keras.layers import LeakyReLU
 from tensorflow.keras.layers import BatchNormalization
 from tensorflow.keras import Model
@@ -23,7 +16,6 @@ from ..yolo3.utils import compose
 
 @wraps(Conv2D)
 def DarknetConv2D(*args, **kwargs):
-    """Wrapper to set Darknet parameters for Convolution2D."""
     darknet_conv_kwargs = {"kernel_regularizer": l2(5e-4)}
     darknet_conv_kwargs["padding"] = (
         "valid" if kwargs.get("strides") == (2, 2) else "same"
@@ -69,7 +61,6 @@ def darknet_body(x):
 
 
 def make_last_layers(x, num_filters, out_filters):
-    """6 Conv2D_BN_Leaky layers followed by a Conv2D_linear layer"""
     x = compose(
         DarknetConv2D_BN_Leaky(num_filters, (1, 1)),
         DarknetConv2D_BN_Leaky(num_filters * 2, (3, 3)),
@@ -98,42 +89,6 @@ def yolo_body(inputs, num_anchors, num_classes):
     x, y3 = make_last_layers(x, 128, num_anchors * (num_classes + 5))
 
     return Model(inputs, [y1, y2, y3])
-
-
-def tiny_yolo_body(inputs, num_anchors, num_classes):
-    """Create Tiny YOLO_v3 model CNN body in keras."""
-    x1 = compose(
-        DarknetConv2D_BN_Leaky(16, (3, 3)),
-        MaxPooling2D(pool_size=(2, 2), strides=(2, 2), padding="same"),
-        DarknetConv2D_BN_Leaky(32, (3, 3)),
-        MaxPooling2D(pool_size=(2, 2), strides=(2, 2), padding="same"),
-        DarknetConv2D_BN_Leaky(64, (3, 3)),
-        MaxPooling2D(pool_size=(2, 2), strides=(2, 2), padding="same"),
-        DarknetConv2D_BN_Leaky(128, (3, 3)),
-        MaxPooling2D(pool_size=(2, 2), strides=(2, 2), padding="same"),
-        DarknetConv2D_BN_Leaky(256, (3, 3)),
-    )(inputs)
-    x2 = compose(
-        MaxPooling2D(pool_size=(2, 2), strides=(2, 2), padding="same"),
-        DarknetConv2D_BN_Leaky(512, (3, 3)),
-        MaxPooling2D(pool_size=(2, 2), strides=(1, 1), padding="same"),
-        DarknetConv2D_BN_Leaky(1024, (3, 3)),
-        DarknetConv2D_BN_Leaky(256, (1, 1)),
-    )(x1)
-    y1 = compose(
-        DarknetConv2D_BN_Leaky(512, (3, 3)),
-        DarknetConv2D(num_anchors * (num_classes + 5), (1, 1)),
-    )(x2)
-
-    x2 = compose(DarknetConv2D_BN_Leaky(128, (1, 1)), UpSampling2D(2))(x2)
-    y2 = compose(
-        Concatenate(),
-        DarknetConv2D_BN_Leaky(256, (3, 3)),
-        DarknetConv2D(num_anchors * (num_classes + 5), (1, 1)),
-    )([x2, x1])
-
-    return Model(inputs, [y1, y2])
-
 
 def yolo_head(feats, anchors, num_classes, input_shape, calc_loss=False):
     """Convert final layer features to bounding box parameters."""
@@ -214,15 +169,7 @@ def yolo_boxes_and_scores(feats, anchors, num_classes, input_shape, image_shape)
     return boxes, box_scores
 
 
-def yolo_eval(
-    yolo_outputs,
-    anchors,
-    num_classes,
-    image_shape,
-    max_boxes=20,
-    score_threshold=0.6,
-    iou_threshold=0.5,
-):
+def yolo_eval(yolo_outputs,anchors,num_classes,image_shape,max_boxes=20,score_threshold=0.6,iou_threshold=0.5,):
     """Evaluate YOLO model on given input and return filtered boxes."""
     num_layers = len(yolo_outputs)
     anchor_mask = (
