@@ -1,7 +1,8 @@
 # Training YOLO v3 using Transfer Learning 
 ### Model Architecture
-Model is created to predict 4 Class Probabilities ['Helmet','Vest','Mask','Boot'].
-The Model uses the darknet body as the classification backbone and imagenet weights are loaded.
+Model is created to predict 4 Class Probabilities ['Helmet','Vest','Mask','Boot'].<br>
+The Model Uses 9 Anchor Boxes.<br>
+The Model used the darknet body as the classification backbone and pretrained imagenet weights are loaded.
 A Custom detection head is constructed with 3 layers outputing feature dimentions 13 * 13 * (num_anchors * (num_classes + 5)) , 26 * 26 * (num_anchors * (num_classes + 5)) , 52 * 52 * (num_anchors * (num_classes + 5)) respectively.
 ![model.py](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/c536ab42215577578a84c1b3c29c52ed2c6b96c3/2_Training/src/keras_yolo3/yolo3/model.py#L63-L91)
 ### Training
