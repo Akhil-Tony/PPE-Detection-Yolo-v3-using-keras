@@ -45,4 +45,5 @@ then i build a custom detection layer for my model by the reshaping the outputs 
 then i build a data pipeline which preprocess each data labels into 7*7*14 label tensor.
 
 Trained with more than 2500 data samples for 100 epochs but model never converged !!!!!
-
+<br>
+[first approach notebook](/Yolo_Experiment.ipynb)
