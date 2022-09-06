@@ -36,3 +36,7 @@ Download and place inside the Data/Model_Weights Folder for running inference.
 
 ### Reference
 https://github.com/qqwweee/keras-yolo3
+
+### Failed Attempt
+
+[approach](/Yolo_Experiment.ipynb)
