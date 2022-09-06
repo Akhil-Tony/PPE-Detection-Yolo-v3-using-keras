@@ -39,4 +39,6 @@ https://github.com/qqwweee/keras-yolo3
 
 ### Failed Attempt
 
+I First tried to implement yolo v1 from scratch with my understanding. Since i wanted to use pretrained weights i reused lower layers of VGG19 Model so that i can loaded pretrained image net weights.
+then i build a detection head layer for the VGG19 by the reshaping the outputs from dense layers
 [approach](/Yolo_Experiment.ipynb)
