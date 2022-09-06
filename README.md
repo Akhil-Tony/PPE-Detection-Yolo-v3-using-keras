@@ -9,10 +9,10 @@ First the backbone layers are freezed and the detection heads are trained with l
 In the second stage all the layers are unfreezed and trained with learning rate reduced to 1e-4 for another 51 epochs along with early stopping callback.
 ![TrainYolo.py](/2_Training/Train_YOLO.py)
 ### Testing
-A video containing workers in construction environment is used for testing.
+A video containing workers in construction environment is used for testing.The Model is loaded and made predictions using ![Detection.py](/3_Inference/Detector.py). 
 ![](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/master/gif/20220906_133255.gif)
 ![](https://github.com/Akhil-Tony/PPE-Detection-Yolo-v3-using-keras/blob/master/gif/20220906_133431.gif)
-![Detection.py](/3_Inference/Detector.py)
+
 
 
 
